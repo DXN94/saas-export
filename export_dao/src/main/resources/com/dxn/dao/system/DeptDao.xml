@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.dxn.dao.system.DeptDao">
+
+    <resultMap id="DeptResult" type="com.dxn.domain.system.Dept">
+        <id column="dept_id" property="id"/>
+        <result column="dept_name" property="deptName"/>
+        <result column="state" property="state"/>
+        <result column="company_id" property="companyId"/>
+        <result column="company_name" property="companyName"/>
+        <association column="parent_id" property="parent" javaType="com.dxn.domain.system.Dept"
+                     select="com.dxn.dao.system.DeptDao.findById" />
+
+
+    </resultMap>
+    <select id="findAll" resultMap="DeptResult">
+        SELECT * FROM pe_dept where company_id = #{companyId}
+    </select>
+
+    <insert id="saveDept" parameterType="com.dxn.domain.system.Dept">
+        INSERT INTO pe_dept VALUES (#{id},#{deptName},#{parent.id},#{state},#{companyId},#{companyName})
+    </insert>
+
+    <delete id="deleteDept" parameterType="com.dxn.domain.system.Dept">
+        DELETE FROM pe_Dept where dept_id = #{id}
+    </delete>
+
+    <update id="updateDept" parameterType="com.dxn.domain.system.Dept">
+        UPDATE pe_dept SET
+                           dept_name = #{deptName},
+                           <if test="parent.id != ''">
+                               parent_id = #{parent.id},
+                           </if>
+                           <if test="parent.id == ''">
+                           parent_id = NULL,
+                           </if>
+                           state = #{state},
+                           company_id = #{companyId},
+                           company_name = #{companyName}
+        WHERE dept_id = #{id}
+    </update>
+
+    <select id="findById" resultMap="DeptResult">
+        SELECT * FROM pe_dept where dept_id = #{id}
+    </select>
+
+    <select id="count" resultType="java.lang.Integer">
+        SELECT COUNT(1) FROM pe_dept
+    </select>
+
+    <select id="findByLimit" parameterType="Map" resultMap="DeptResult">
+        SELECT * FROM pe_dept LIMIT #{index},#{pageSize}
+    </select>
+</mapper>

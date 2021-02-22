@@ -40,7 +40,8 @@
         <property name="filterChainDefinitions">
             <!-- /**代表下面的多级目录也过滤 -->
             <value>
-<!--                /system/module/list.do = perms["模块管理"]-->
+                /system/module/** = perms["模块管理"]
+                /company/** = perms["企业管理"]
                 /index.jsp* = anon
                 /login.jsp* = anon
                 /login* = anon

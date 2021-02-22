@@ -1,12 +1,19 @@
 package com.dxn.shiro;
 
+import com.dxn.domain.system.Module;
 import com.dxn.domain.system.User;
+import com.dxn.service.system.ModuleService;
 import com.dxn.service.system.UserService;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
+import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 /**
  * @author dxn
@@ -17,6 +24,8 @@ public class AuthRealm extends AuthorizingRealm {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private ModuleService moduleService;
 
     /**
      * 授权
@@ -25,7 +34,22 @@ public class AuthRealm extends AuthorizingRealm {
      */
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
-        return null;
+        //1.获取安全数据
+        //2.得到当前登录的用户对象
+        User user = (User)principals.getPrimaryPrincipal();
+        //3.通过用户对象获取用户的所有操作模块
+        List<Module> moduleList = moduleService.findModulesByUser(user);
+        //4.构造AuthorizationInfo对象返回
+        Set<String> perms = new HashSet<>();
+
+        for (Module module : moduleList) {
+            perms.add(module.getName());
+        }
+        SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
+        //将所有可操作模块的名称存入到授权对象中
+        info.setStringPermissions(perms);
+        return info;
+
     }
 
     /**

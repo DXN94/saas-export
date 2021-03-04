@@ -1,7 +1,0 @@
-com\dxn\common\entity\PageResult.class
-com\dxn\common\utils\UtilFuns.class
-com\dxn\common\utils\BeanMapUtils.class
-com\dxn\common\utils\Encrypt.class
-com\dxn\common\utils\SysConstant.class
-com\dxn\common\utils\DownloadUtil.class
-com\dxn\common\utils\MailUtil.class

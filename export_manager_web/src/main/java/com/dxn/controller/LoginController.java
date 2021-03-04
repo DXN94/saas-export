@@ -9,11 +9,10 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.SessionAttribute;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -25,10 +24,10 @@ import java.util.List;
 @Controller
 public class LoginController extends BaseController {
 
-    @Autowired
-    private UserService userService;
-    @Autowired
+    @Resource
     private ModuleService moduleService;
+    @Resource
+    private UserService userService;
 
 
     @RequestMapping(value = "/login",name = "登录")
@@ -54,7 +53,7 @@ public class LoginController extends BaseController {
             //3.激活SecurityManager
             subject.login(uP);
             //4.获取安全对象
-            User user = (User)subject.getPrincipal();
+            User user = (User) subject.getPrincipal();
             //5.加到session中
             session.setAttribute("user",user);
             // 查找用户对应的权限
@@ -62,6 +61,7 @@ public class LoginController extends BaseController {
             session.setAttribute("modules",modules);
             return "/home/main";
         } catch (AuthenticationException e) {
+            e.printStackTrace();
             //发生异常,跳转到错误页面
             request.setAttribute("error","用户名或密码错误");
             return "forward:/unauthorized.jsp";

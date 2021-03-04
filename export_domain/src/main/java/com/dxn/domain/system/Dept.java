@@ -1,6 +1,8 @@
 package com.dxn.domain.system;
 
-public class Dept{
+import java.io.Serializable;
+
+public class Dept implements Serializable {
     /** 
      */ 
     private String id;

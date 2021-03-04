@@ -26,7 +26,7 @@ public class BaseController {
         this.request = request;
         this.response = response;
         this.session = session;
-        User user = (User)session.getAttribute("user");
+        User user = (User) session.getAttribute("user");
         if (null != user){
             this.companyId = user.getCompanyId();
             this.companyName = user.getCompanyName();

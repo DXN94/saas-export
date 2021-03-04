@@ -2,16 +2,14 @@ package com.dxn.controller.system;
 
 import com.dxn.controller.BaseController;
 import com.dxn.domain.system.Module;
-import com.dxn.domain.system.Role;
 import com.dxn.service.system.DeptService;
 import com.dxn.service.system.ModuleService;
-import com.dxn.service.system.RoleService;
 import com.github.pagehelper.PageInfo;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 
@@ -24,10 +22,10 @@ import java.util.List;
 @Controller
 public class ModuleController extends BaseController {
 
-    @Autowired
+    @Resource
     private ModuleService moduleService;
 
-    @Autowired
+    @Resource
     private DeptService deptService;
 
 

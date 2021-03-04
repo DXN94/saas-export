@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:jdbc="http://www.springframework.org/schema/jdbc" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:task="http://www.springframework.org/schema/task" xmlns:dubbo="http://dubbo.apache.org/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://dubbo.apache.org/schema/dubbo http://dubbo.apache.org/schema/dubbo/dubbo.xsd">
+
+    <!--当前应用的名称。 名称不能和其它服务名称相同-->
+    <dubbo:application name="export_manager_web"/>
+
+    <!--给当前服务提供可访问的注册中心地址-->
+    <dubbo:registry address="zookeeper://127.0.0.1:2181"/>
+
+    <dubbo:reference interface="com.dxn.service.system.UserService" id="userService"/>
+    <dubbo:reference interface="com.dxn.service.system.ModuleService" id="moduleService"/>
+    <dubbo:reference interface="com.dxn.service.system.RoleService" id="roleService"/>
+    <dubbo:reference interface="com.dxn.service.system.SysLogService" id="sysLogService"/>
+    <dubbo:reference interface="com.dxn.service.system.DeptService" id="deptService"/>
+    <dubbo:reference interface="com.dxn.service.company.CompanyService" id="companyService"/>
+
+    <!--开启dubbo的注解扫描-->
+    <dubbo:annotation package="com.dxn"/>
+
+</beans>

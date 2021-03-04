@@ -1,15 +1,12 @@
 package com.dxn.service.system.impl;
 
+import com.alibaba.dubbo.config.annotation.Service;
 import com.dxn.dao.system.RoleDao;
-import com.dxn.dao.system.UserDao;
 import com.dxn.domain.system.Role;
-import com.dxn.domain.system.User;
 import com.dxn.service.system.RoleService;
-import com.dxn.service.system.UserService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.UUID;

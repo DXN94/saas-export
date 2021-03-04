@@ -9,8 +9,8 @@ import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
-import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.annotation.Resource;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -20,11 +20,11 @@ import java.util.Set;
  * @version 1.0
  * @date 2021/2/22 21:24
  */
-public class AuthRealm extends AuthorizingRealm {
+public class AuthRealm extends AuthorizingRealm{
 
-    @Autowired
+    @Resource
     private UserService userService;
-    @Autowired
+    @Resource
     private ModuleService moduleService;
 
     /**

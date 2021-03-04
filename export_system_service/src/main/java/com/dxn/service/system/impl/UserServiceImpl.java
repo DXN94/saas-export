@@ -1,16 +1,20 @@
 package com.dxn.service.system.impl;
 
+import com.alibaba.dubbo.config.annotation.Service;
+import com.dxn.common.utils.Encrypt;
 import com.dxn.dao.system.UserDao;
 import com.dxn.domain.system.User;
 import com.dxn.service.system.UserService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * @author 29237
+ */
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -62,6 +66,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void saveUser(User user) {
+        Encrypt.md5(user.getPassword(),user.getEmail()+"SeiDouJieBuKai");
         user.setId(UUID.randomUUID().toString());
         userDao.saveUser(user);
     }

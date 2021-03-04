@@ -1,12 +1,12 @@
 package com.dxn.service.system.impl;
 
+import com.alibaba.dubbo.config.annotation.Service;
 import com.dxn.dao.system.DeptDao;
 import com.dxn.domain.system.Dept;
 import com.dxn.service.system.DeptService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

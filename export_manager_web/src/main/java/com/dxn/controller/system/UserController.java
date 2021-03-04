@@ -8,11 +8,11 @@ import com.dxn.service.system.DeptService;
 import com.dxn.service.system.RoleService;
 import com.dxn.service.system.UserService;
 import com.github.pagehelper.PageInfo;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 
@@ -25,13 +25,13 @@ import java.util.List;
 @Controller
 public class UserController extends BaseController {
 
-    @Autowired
+    @Resource
     private UserService userService;
 
-    @Autowired
+    @Resource
     private DeptService deptService;
 
-    @Autowired
+    @Resource
     private RoleService roleService;
 
 

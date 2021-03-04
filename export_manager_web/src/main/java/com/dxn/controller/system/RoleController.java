@@ -1,20 +1,18 @@
 package com.dxn.controller.system;
 
 import com.dxn.controller.BaseController;
-import com.dxn.domain.system.Dept;
 import com.dxn.domain.system.Module;
 import com.dxn.domain.system.Role;
-import com.dxn.domain.system.User;
 import com.dxn.service.system.DeptService;
 import com.dxn.service.system.ModuleService;
 import com.dxn.service.system.RoleService;
 import com.github.pagehelper.PageInfo;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -30,13 +28,13 @@ import java.util.Map;
 @Controller
 public class RoleController extends BaseController {
 
-    @Autowired
+    @Resource
     private RoleService roleService;
 
-    @Autowired
+    @Resource
     private DeptService deptService;
 
-    @Autowired
+    @Resource
     private ModuleService moduleService;
 
 

@@ -1,6 +1,7 @@
 package com.dxn.syslog;
 
 
+import com.alibaba.dubbo.config.annotation.Reference;
 import com.dxn.domain.system.SysLog;
 import com.dxn.domain.system.User;
 import com.dxn.service.system.SysLogService;
@@ -25,7 +26,7 @@ import java.util.Date;
 @Aspect
 public class SysLogAspect {
 
-    @Autowired
+    @Reference
     private SysLogService sysLogService;
 
     @Autowired

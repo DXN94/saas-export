@@ -1,5 +1,6 @@
 package com.dxn.service.system.impl;
 
+import com.alibaba.dubbo.config.annotation.Service;
 import com.dxn.dao.system.ModuleDao;
 import com.dxn.domain.system.Module;
 import com.dxn.domain.system.User;
@@ -7,7 +8,6 @@ import com.dxn.service.system.ModuleService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.UUID;

@@ -7,9 +7,9 @@ import java.io.IOException;
 /**
  * @author dxn
  * @version 1.0
- * @date 2021/2/24 22:08
+ * @date 2021/3/11 20:45
  */
-public class CompanyProvider {
+public class CompanyProviderStart {
     public static void main(String[] args) throws IOException {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("classpath*:spring/applicationContext-*.xml");
         context.start(); //启动服务

@@ -18,6 +18,10 @@
         <module>export_company_service</module>
         <module>export_company_interface</module>
         <module>export_system_interface</module>
+        <module>export_cargo_service</module>
+        <module>export_cargo_interface</module>
+        <module>export_cargo_interface</module>
+        <module>export_cargo_service</module>
     </modules>
 
     <!-- 集中定义依赖版本号 -->

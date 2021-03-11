@@ -128,7 +128,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <c:forEach items="${page.rows}" var="o" varStatus="status">
+                    <c:forEach items="${page.list}" var="o" varStatus="status">
                         <tr>
                             <td><input type="checkbox" name="id" value="${o.id}"/></td>
                             <td>${o.customName}</td>
@@ -180,7 +180,7 @@
         <!-- .box-footer-->
         <div class="box-footer">
             <jsp:include page="../../common/page.jsp">
-                <jsp:param value="/cargo/contract/list.do" name="pageUrl"/>
+                <jsp:param value="/cargo/contract/findAll.do" name="pageUrl"/>
             </jsp:include>
         </div>
         <!-- /.box-footer-->

@@ -35,7 +35,7 @@
         <form action="/cargo/export/edit.do" method="post">
         <div class="panel panel-default">
             <div class="panel-heading">对【${id}】出口报运</div>
-            <input type="hidden" name="contractIds" value="${id}">
+            <input type="text" name="contractIds" value="${id}">
             <div class="row data-type" style="margin: 0px">
                 <div class="col-md-2 title">信用证号</div>
                 <div class="col-md-4 data">

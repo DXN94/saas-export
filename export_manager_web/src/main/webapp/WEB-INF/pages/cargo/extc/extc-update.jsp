@@ -39,10 +39,11 @@
         <!--订单信息-->
         <div class="panel panel-default">
             <div class="panel-heading">编辑附件</div>
-            <form id="editForm" action="${ctx}/cargo/extCproduct/edit.do" method="post" enctype="multipart/form-data">
-                <input type="hidden" name="id" value="${extCproduct.id}">
-                <input type="hidden" name="contractProductId" value="${contractProductId}">
-                <input type="hidden" name="contractId" value="${contractId}">
+            <%--enctype="multipart/form-data"--%>
+            <form id="editForm" action="${ctx}/cargo/extCproduct/edit.do" method="post" >
+                <input type="text" name="id" value="${extCproduct.id}">
+                <input type="text" name="contractProductId" value="${extCproduct.contractProductId}">
+                <input type="text" name="contractId" value="${extCproduct.contractId}">
                 <input type="hidden" id="factoryName" name="factoryName" value="${extCproduct.factoryName}">
                 <div class="row data-type" style="margin: 0px">
                     <div class="col-md-2 title">生产厂家</div>

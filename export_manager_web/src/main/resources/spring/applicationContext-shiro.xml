@@ -40,6 +40,7 @@
             <value>
                 /system/module/** = perms["模块管理"]
                 /company/** = perms["企业管理"]
+                /cargo/** = perms["货运管理"]
                 /index.jsp* = anon
                 /login.jsp* = anon
                 /login* = anon

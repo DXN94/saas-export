@@ -12,6 +12,8 @@ import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.lang.reflect.Method;
@@ -26,7 +28,7 @@ import java.util.Date;
 @Aspect
 public class SysLogAspect {
 
-    @Reference
+    @Resource
     private SysLogService sysLogService;
 
     @Autowired

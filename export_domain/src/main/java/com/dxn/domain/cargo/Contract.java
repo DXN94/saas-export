@@ -1,5 +1,7 @@
 package com.dxn.domain.cargo;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -11,6 +13,7 @@ public class Contract implements Serializable {
 
     private String contractNo;
 
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private Date signingDate;
 
     private String inputBy;
@@ -25,10 +28,12 @@ public class Contract implements Serializable {
 
     private String customName;
 
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private Date shipTime;
 
     private Long importNum;
 
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private Date deliveryPeriod;
 
     private Integer oldState;
@@ -51,10 +56,12 @@ public class Contract implements Serializable {
 
     private String createDept;
 
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private Date createTime;
 
     private String updateBy;
 
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private Date updateTime;
 
     private String companyId;

@@ -1,6 +1,7 @@
 package com.dxn.controller;
 
 import com.dxn.domain.system.User;
+import org.aspectj.weaver.ast.Var;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,6 +20,8 @@ public class BaseController {
 
     protected String companyId;
     protected String companyName;
+    protected String userName;
+    protected String deptName;
 
     @ModelAttribute
     public void setReqAndResp(HttpServletRequest request, HttpServletResponse response,
@@ -30,6 +33,8 @@ public class BaseController {
         if (null != user){
             this.companyId = user.getCompanyId();
             this.companyName = user.getCompanyName();
+            this.userName = user.getUserName();
+            this.deptName = user.getDeptName();
         }
     }
 

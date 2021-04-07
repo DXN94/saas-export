@@ -9,7 +9,10 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * @author dxn
@@ -24,22 +27,39 @@ public class ContractServiceImpl implements ContractService {
 
     @Override
     public int deleteByPrimaryKey(String id) {
-        return 0;
+        int i = contractDao.deleteByPrimaryKey(id);
+        return i;
     }
 
     @Override
     public Contract selectByPrimaryKey(String id) {
-        return null;
+        //根据id查询合同
+        Contract contract = contractDao.selectByPrimaryKey(id);
+        return contract;
     }
 
     @Override
     public int updateByPrimaryKey(Contract record) {
-        return 0;
+        //根据id查出本合同创建时间
+        Contract dbContract = contractDao.selectByPrimaryKey(record.getId());
+        record.setCreateTime(dbContract.getCreateTime());
+        record.setUpdateTime(new Date());
+        record.setCompanyId(dbContract.getCompanyId());
+        record.setOutState(dbContract.getOutState());
+        record.setState(dbContract.getState());
+        //总金额
+        record.setTotalAmount(dbContract.getTotalAmount());
+        //货物数
+        record.setProNum(dbContract.getProNum());
+        //附件数
+        record.setExtNum(dbContract.getExtNum());
+        int i = contractDao.updateByPrimaryKey(record);
+        return i;
     }
 
     @Override
-    public PageInfo findAll(ContractExample contractExample,int pageNum, int pageSize) {
-        PageHelper.startPage(pageNum,pageSize);
+    public PageInfo findAll(ContractExample contractExample, int pageNum, int pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
         List<Contract> contracts = contractDao.selectByExample(contractExample);
         return new PageInfo(contracts);
     }
@@ -61,6 +81,19 @@ public class ContractServiceImpl implements ContractService {
 
     @Override
     public int insert(Contract record) {
-        return 0;
+        record.setId(UUID.randomUUID().toString());
+        record.setOutState(0);
+        record.setState(0);
+        record.setCreateTime(new Date());
+        record.setUpdateTime(new Date());
+        //设置总金额和数量
+        //总金额
+        record.setTotalAmount(BigDecimal.valueOf(0d));
+        //货物数
+        record.setProNum(0);
+        //附件数
+        record.setExtNum(0);
+        int insert = contractDao.insert(record);
+        return insert;
     }
 }

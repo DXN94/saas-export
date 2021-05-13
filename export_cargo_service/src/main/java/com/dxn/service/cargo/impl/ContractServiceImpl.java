@@ -9,7 +9,6 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -61,6 +60,9 @@ public class ContractServiceImpl implements ContractService {
     public PageInfo findAll(ContractExample contractExample, int pageNum, int pageSize) {
         PageHelper.startPage(pageNum, pageSize);
         List<Contract> contracts = contractDao.selectByExample(contractExample);
+        for (Contract contract : contracts) {
+            System.out.println(contract.toString());
+        }
         return new PageInfo(contracts);
     }
 
@@ -88,7 +90,7 @@ public class ContractServiceImpl implements ContractService {
         record.setUpdateTime(new Date());
         //设置总金额和数量
         //总金额
-        record.setTotalAmount(BigDecimal.valueOf(0d));
+        record.setTotalAmount(0.00);
         //货物数
         record.setProNum(0);
         //附件数

@@ -5,6 +5,9 @@ import com.dxn.domain.cargo.ContractExample;
 
 import java.util.List;
 
+/**
+ * @author 29237
+ */
 public interface ContractDao {
     int deleteByPrimaryKey(String id);
 

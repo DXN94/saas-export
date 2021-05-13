@@ -23,6 +23,10 @@
     <dubbo:reference interface="com.dxn.service.system.DeptService" id="deptService"/>
     <dubbo:reference interface="com.dxn.service.company.CompanyService" id="companyService"/>
     <dubbo:reference interface="com.dxn.service.cargo.ContractService" id="contractService"/>
+    <dubbo:reference interface="com.dxn.service.cargo.ContractProductService" id="contractProductService"/>
+    <dubbo:reference interface="com.dxn.service.cargo.FactoryService" id="factoryService"/>
+    <dubbo:reference interface="com.dxn.service.cargo.ExtCproductService" id="extCproductService"/>
+
 
     <!--开启dubbo的注解扫描-->
     <dubbo:annotation package="com.dxn"/>

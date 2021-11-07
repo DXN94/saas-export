@@ -10,10 +10,8 @@ import com.dxn.service.cargo.FactoryService;
 import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -61,7 +59,7 @@ public class ContractProductController extends BaseController {
         } else {
             contractProductService.update(contractProduct);
         }
-        return "redirect:/cargo/contractProduct/list.do?contractId=" + contractProduct.getContractId();
+        return "redirect:/cargo/contractProduct/list.do?contractId="+contractProduct.getContractId();
     }
 
     @RequestMapping(value = "/toUpdate", name = "前往货物修改页面")

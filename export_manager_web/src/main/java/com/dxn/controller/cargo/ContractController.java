@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.Resource;
-import java.util.List;
 
 /**
  * @author dxn
@@ -58,7 +57,7 @@ public class ContractController extends BaseController {
         }else {
             int i = contractService.updateByPrimaryKey(contract);
         }
-        return "redirect:/cargo/contract/list.do";
+        return "redirect:/cargo/contract/findAll.do";
     }
 
     @RequestMapping(value = "/toUpdate", name = "前往购销合同编辑页面")
@@ -73,7 +72,7 @@ public class ContractController extends BaseController {
     public String delete(String id){
         //根据合同id查询合同回显
         int i = contractService.deleteByPrimaryKey(id);
-        return "redirect:/cargo/contract/list.do";
+        return "redirect:/cargo/contract/findAll.do";
     }
 
     @RequestMapping(value = "/toView", name = "查看购销合同")

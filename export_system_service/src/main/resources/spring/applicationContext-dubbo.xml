@@ -15,7 +15,7 @@
     <dubbo:application name="export_system_service"/>
 
     <!--给当前服务提供可访问的注册中心地址-->
-    <dubbo:registry address="zookeeper://127.0.0.1:2181"/>
+    <dubbo:registry address="zookeeper://101.201.211.48:2181"/>
 
     <!--给消费提供可访问的地址：默认是20880-->
     <dubbo:protocol name="dubbo" port="20882"/>

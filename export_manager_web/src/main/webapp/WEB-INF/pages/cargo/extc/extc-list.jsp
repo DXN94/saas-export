@@ -10,7 +10,7 @@
     <!-- 页面meta -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>数据 - AdminLTE2定制版</title>
+    <title>金手指</title>
     <meta name="description" content="AdminLTE2定制版">
     <meta name="keywords" content="AdminLTE2定制版">
     <!-- Tell the browser to be responsive to screen width -->
@@ -180,7 +180,7 @@
             <!-- .box-footer-->
             <div class="box-footer">
                 <jsp:include page="../../common/page.jsp">
-                    <jsp:param value="cargo/contractProduct/list.do?contractId=${contractId}" name="pageUrl"/>
+                    <jsp:param value="list.do?contractId=${contractId}&contractProductId=${contractProductId}" name="pageUrl"/>
                 </jsp:include>
             </div>
             <!-- /.box-footer-->

@@ -11,18 +11,48 @@ public class ExtCproduct extends BaseEntity implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	private String id;
-	private String productNo;			//产品号
-	private String productImage;		//图片
-	private String productDesc;			//产品描述
-	private String packingUnit;			//  包装单位   PCS/SETS
-	private Integer cnumber;			//数量
-	private Double price;			    //单价
-	private Double amount;				//总金额 　自动计算: 数量x单价
-	private String productRequest;		//要求
-	private Integer orderNo;		   //排序号
+	/**
+	 * 产品号
+	 */
+	private String productNo;
+	/**
+	 * 图片
+	 */
+	private String productImage;
+	/**
+	 * 产品描述
+	 */
+	private String productDesc;
+	/**
+	 *   包装单位   PCS/SETS
+	 */
+	private String packingUnit;
+	/**
+	 * 数量
+	 */
+	private Integer cnumber;
+	/**
+	 * 单价
+	 */
+	private Double price;
+	/**
+	 * 总金额 　自动计算: 数量x单价
+	 */
+	private Double amount;
+	/**
+	 * 要求
+	 */
+	private String productRequest;
+	/**
+	 * 排序号
+	 */
+	private Integer orderNo;		   
 	private String contractProductId;
 	private String factoryId;
-	private String factoryName;//工厂名
+	/**
+	 * 工厂名
+	 */
+	private String factoryName;
 	private String contractId;
 
 

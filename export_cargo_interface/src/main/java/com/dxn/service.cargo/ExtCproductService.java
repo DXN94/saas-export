@@ -1,19 +1,18 @@
 package com.dxn.service.cargo;
 
 
-
 import com.dxn.domain.cargo.ExtCproduct;
 import com.dxn.domain.cargo.ExtCproductExample;
 import com.github.pagehelper.PageInfo;
 
-import java.util.Map;
-
 /**
-
+ * @author dongxiangnan
+ * 附件操作
  */
 public interface ExtCproductService {
 	/**
-	 * 保存
+	 * 添加附件
+	 * @param ExtCproduct
 	 */
 	void save(ExtCproduct ExtCproduct);
 

@@ -1,11 +1,11 @@
 package com.dxn.service.cargo.impl;
 
+import com.alibaba.dubbo.config.annotation.Service;
 import com.dxn.dao.cargo.ContractDao;
 import com.dxn.dao.cargo.ContractProductDao;
 import com.dxn.dao.cargo.ExtCproductDao;
 import com.dxn.domain.cargo.*;
 import com.dxn.service.cargo.ContractProductService;
-import com.alibaba.dubbo.config.annotation.Service;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;

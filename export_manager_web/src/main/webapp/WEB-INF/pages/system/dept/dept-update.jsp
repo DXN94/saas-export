@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>数据 - AdminLTE2定制版</title>
+    <title>金手指</title>
 </head>
 <body>
     <div id="frameContent" class="content-wrapper" style="margin-left:0px;">

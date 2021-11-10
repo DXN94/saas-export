@@ -21,6 +21,8 @@
     <result column="order_no" jdbcType="DECIMAL" property="orderNo" />
     <result column="company_id" jdbcType="VARCHAR" property="companyId" />
     <result column="company_name" jdbcType="VARCHAR" property="companyName" />
+    <collection property="extCproducts" column="id" ofType="com.dxn.domain.cargo.ExtCproduct"
+                select="com.dxn.dao.cargo.ExtCproductDao.findByProductId"></collection>
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>

@@ -47,7 +47,7 @@ public class ExtCproductController extends BaseController{
         List<Factory> factoryList = factoryService.findAll(example);
         request.setAttribute("factoryList",factoryList);
         //4、跳转
-        return "cargo/extc/extc-list";
+        return "/cargo/extc/extc-list";
     }
 
     @RequestMapping(value = "/edit",name="修改数据")
@@ -88,7 +88,7 @@ public class ExtCproductController extends BaseController{
         request.setAttribute("factoryList",factoryList);
 
         //3、跳转
-        return "cargo/extc/extc-update";
+        return "/cargo/extc/extc-update";
     }
 
 

@@ -34,4 +34,12 @@ public interface ContractService {
      * @return
      */
     PageInfo findAll(ContractExample contractExample, int pageNum, int pageSize);
+
+    /**
+     * 根据id修改合同状态
+     * @param id
+     * @param state
+     * @return
+     */
+    int updateStatusById(String id, int state);
 }

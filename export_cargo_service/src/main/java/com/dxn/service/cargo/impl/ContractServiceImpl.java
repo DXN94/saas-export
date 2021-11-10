@@ -67,6 +67,16 @@ public class ContractServiceImpl implements ContractService {
     }
 
     @Override
+    public int updateStatusById(String id, int state) {
+        // 动态修改创建对象
+        Contract contract = new Contract();
+        contract.setState(state);
+        contract.setId(id);
+        int i = contractDao.updateByPrimaryKeySelective(contract);
+        return i;
+    }
+
+    @Override
     public int updateByPrimaryKeySelective(Contract record) {
         return 0;
     }

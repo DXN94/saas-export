@@ -23,6 +23,10 @@ public class ContractController extends BaseController {
     @Resource
     private ContractService contractService;
 
+    private static final int DEGREE2 = 2;
+    private static final int DEGREE3 = 3;
+    private static final int DEGREE4 = 4;
+
     @RequestMapping(value = "/findAll",name = "查询所有购销合同")
     public String findAll(@RequestParam(defaultValue = "1") int page,@RequestParam(defaultValue = "10") int pageSize){
         ContractExample contractExample = new ContractExample();
@@ -30,6 +34,19 @@ public class ContractController extends BaseController {
         ContractExample.Criteria criteria = contractExample.createCriteria();
         // 以公司id查询
         criteria.andCompanyIdEqualTo(companyId);
+        /**
+         * 2-管理所有下属部门和人员 部门设计 100 100101 100101101 根据模糊查询
+         * 3-管理本部门 根据部门id查询
+         * 4-普通员工 根据员工id查询
+         */
+        if (degree == DEGREE4){
+            criteria.andCreateByEqualTo(userId);
+        }else if (degree == DEGREE3){
+            criteria.andCreateDeptLike(deptId+"%");
+        }else{
+            //模糊查询
+            criteria.andCreateDeptLike(deptId+"%");
+        }
         PageInfo info = contractService.findAll(contractExample,page,pageSize);
         // 将查询的结果放入req域中
         request.setAttribute("page",info);
@@ -46,8 +63,8 @@ public class ContractController extends BaseController {
         if ("".equals(contract.getId()) || null == contract.getId()){
             try {
                 //新增
-                contract.setCreateBy(userName);
-                contract.setCreateDept(deptName);
+                contract.setCreateBy(userId);
+                contract.setCreateDept(deptId);
                 contract.setCompanyId(companyId);
                 contract.setCompanyName(companyName);
                 int insert = contractService.insert(contract);
@@ -81,5 +98,23 @@ public class ContractController extends BaseController {
         Contract contract = contractService.selectByPrimaryKey(id);
         request.setAttribute("contract",contract);
         return "/cargo/contract/contract-view";
+    }
+
+    @RequestMapping(value = "/submit", name = "购销合同提交")
+    public String submit(String id){
+        //根据合同id动态修改状态
+        //1是已上报
+        int state = 1;
+        int i = contractService.updateStatusById(id,state);
+        return "redirect:/cargo/contract/findAll.do";
+    }
+
+    @RequestMapping(value = "/cancel", name = "购销合同取消")
+    public String cancel(String id){
+        //根据合同id动态修改状态
+        //0是草稿
+        int state = 0;
+        int i = contractService.updateStatusById(id, state);
+        return "redirect:/cargo/contract/findAll.do";
     }
 }

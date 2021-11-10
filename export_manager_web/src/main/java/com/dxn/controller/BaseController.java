@@ -1,7 +1,6 @@
 package com.dxn.controller;
 
 import com.dxn.domain.system.User;
-import org.aspectj.weaver.ast.Var;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,6 +21,9 @@ public class BaseController {
     protected String companyName;
     protected String userName;
     protected String deptName;
+    protected String deptId;
+    protected Integer degree;
+    protected String userId;
 
     @ModelAttribute
     public void setReqAndResp(HttpServletRequest request, HttpServletResponse response,
@@ -35,6 +37,9 @@ public class BaseController {
             this.companyName = user.getCompanyName();
             this.userName = user.getUserName();
             this.deptName = user.getDeptName();
+            this.deptId = user.getDeptId();
+            this.degree = user.getDegree();
+            this.userId = user.getId();
         }
     }
 

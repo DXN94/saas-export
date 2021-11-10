@@ -1,6 +1,5 @@
 package com.dxn.controller.system;
 
-import com.alibaba.dubbo.config.annotation.Reference;
 import com.dxn.controller.BaseController;
 import com.dxn.domain.system.Dept;
 import com.dxn.service.system.DeptService;

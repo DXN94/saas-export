@@ -23,7 +23,7 @@
     </insert>
 
     <delete id="deleteDept" parameterType="com.dxn.domain.system.Dept">
-        DELETE FROM pe_Dept where dept_id = #{id}
+        DELETE FROM pe_dept where dept_id = #{id}
     </delete>
 
     <update id="updateDept" parameterType="com.dxn.domain.system.Dept">

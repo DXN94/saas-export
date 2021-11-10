@@ -1,6 +1,7 @@
 package com.dxn.service.system.impl;
 
 import com.alibaba.dubbo.config.annotation.Service;
+import com.dxn.common.utils.UuidUtils;
 import com.dxn.dao.system.DeptDao;
 import com.dxn.domain.system.Dept;
 import com.dxn.service.system.DeptService;
@@ -8,8 +9,6 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -32,7 +31,14 @@ public class DeptServiceImpl implements DeptService {
 
     @Override
     public void saveDept(Dept dept) {
-        dept.setId(new SimpleDateFormat(TIMEFORMAT1).format(new Date()));
+        //1.判断有没有上级部门
+        if (dept.getParent().getId().isEmpty()){
+            //没有上级部门，设置4位随机id
+            dept.setId(UuidUtils.uuid4());
+        } else {
+            //如果有上级部门先查出上级部门id然后拼写本部门id
+            dept.setId(dept.getParent().getId()+UuidUtils.uuid4());
+        }
         deptDao.saveDept(dept);
     }
 

@@ -66,7 +66,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void saveUser(User user) {
-        Encrypt.md5(user.getPassword(),user.getEmail()+"SeiDouJieBuKai");
+        String s = Encrypt.md5(user.getPassword(), user.getEmail() + "SeiDouJieBuKai");
+        user.setPassword(s);
         user.setId(UUID.randomUUID().toString());
         userDao.saveUser(user);
     }

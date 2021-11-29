@@ -1,6 +1,7 @@
 package com.dxn.controller.cargo;
 
 import com.dxn.controller.BaseController;
+import com.dxn.controller.utils.FileUploadUtil;
 import com.dxn.domain.cargo.ContractProduct;
 import com.dxn.domain.cargo.ContractProductExample;
 import com.dxn.domain.cargo.Factory;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -29,6 +31,10 @@ public class ContractProductController extends BaseController {
     private ContractProductService contractProductService;
     @Resource
     private FactoryService factoryService;
+
+    @Resource
+    private FileUploadUtil fileUploadUtil;
+
 
     @RequestMapping(value = "/list", name = "根据合同id查询附属所有货物")
     public String findAll(@RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "10") int pageSize, String contractId) {
@@ -50,16 +56,23 @@ public class ContractProductController extends BaseController {
     }
 
     @RequestMapping("/edit")
-    public String edit(ContractProduct contractProduct) {
+    public String edit(ContractProduct contractProduct, MultipartFile productPhoto) {
         if (StringUtils.isEmpty(contractProduct.getId())) {
             //如果没有id则是新增
             contractProduct.setCompanyId(companyId);
             contractProduct.setCompanyName(companyName);
+            //七牛云上传货物图片
+            try {
+                String imgPath = "http://" + fileUploadUtil.upload(productPhoto);
+                contractProduct.setProductImage(imgPath);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             contractProductService.save(contractProduct);
         } else {
             contractProductService.update(contractProduct);
         }
-        return "redirect:/cargo/contractProduct/list.do?contractId="+contractProduct.getContractId();
+        return "redirect:/cargo/contractProduct/list.do?contractId=" + contractProduct.getContractId();
     }
 
     @RequestMapping(value = "/toUpdate", name = "前往货物修改页面")

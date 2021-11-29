@@ -2,6 +2,8 @@ package com.dxn.dao.cargo;
 
 import com.dxn.domain.cargo.Contract;
 import com.dxn.domain.cargo.ContractExample;
+import com.dxn.domain.vo.PrintContract;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -24,4 +26,6 @@ public interface ContractDao {
     int updateByPrimaryKey(Contract record);
 
     List<Contract> findByCompanyId(String companyId);
+
+    List<PrintContract> findPrintContract(@Param("inputDate") String inputDate, @Param("companyId") String companyId);
 }

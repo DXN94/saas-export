@@ -4,6 +4,7 @@ import com.alibaba.dubbo.config.annotation.Service;
 import com.dxn.dao.cargo.ContractDao;
 import com.dxn.domain.cargo.Contract;
 import com.dxn.domain.cargo.ContractExample;
+import com.dxn.domain.vo.PrintContract;
 import com.dxn.service.cargo.ContractService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -74,6 +75,12 @@ public class ContractServiceImpl implements ContractService {
         contract.setId(id);
         int i = contractDao.updateByPrimaryKeySelective(contract);
         return i;
+    }
+
+    @Override
+    public List<PrintContract> findPrintContract(String inputDate, String companyId) {
+
+        return contractDao.findPrintContract(inputDate,companyId);
     }
 
     @Override

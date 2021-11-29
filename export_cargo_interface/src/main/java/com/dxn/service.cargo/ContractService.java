@@ -2,6 +2,7 @@ package com.dxn.service.cargo;
 
 import com.dxn.domain.cargo.Contract;
 import com.dxn.domain.cargo.ContractExample;
+import com.dxn.domain.vo.PrintContract;
 import com.github.pagehelper.PageInfo;
 
 import java.util.List;
@@ -42,4 +43,12 @@ public interface ContractService {
      * @return
      */
     int updateStatusById(String id, int state);
+
+    /**
+     * 查询出货表用于打印
+     * @param inputDate
+     * @param companyId
+     * @return
+     */
+    List<PrintContract> findPrintContract(String inputDate, String companyId);
 }

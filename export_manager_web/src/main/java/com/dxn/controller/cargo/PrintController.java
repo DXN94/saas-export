@@ -26,13 +26,13 @@ public class PrintController extends BaseController {
     @Resource
     private ContractService contractService;
 
-    @RequestMapping("print")
+    @RequestMapping(name = "print", value="转发到打印页面")
     public String toPrint(){
         //转发到打印页面
         return "/cargo/print/contract-print";
     }
 
-    @RequestMapping("printExcel")
+    @RequestMapping(value = "printExcel",name = "打印出货表")
     public void printContract(String inputDate){
         //1.根据条件查出要打印的数据（根据日期和公司id）
         List<PrintContract> printContracts = contractService.findPrintContract(inputDate,companyId);

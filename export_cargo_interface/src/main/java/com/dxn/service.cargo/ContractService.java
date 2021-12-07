@@ -51,4 +51,14 @@ public interface ContractService {
      * @return
      */
     List<PrintContract> findPrintContract(String inputDate, String companyId);
+
+    /**
+     * 查询状态为1的合同
+     * @param page
+     * @param pageSize
+     * @param companyId
+     * @return
+     */
+    PageInfo<Contract> selectConEqSt(int page, int pageSize, String companyId);
+
 }

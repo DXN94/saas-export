@@ -1,5 +1,5 @@
 .idea
-./export*/target
+./export_*/target
 # Compiled class file
 *.class
 

@@ -84,6 +84,18 @@ public class ContractServiceImpl implements ContractService {
     }
 
     @Override
+    public PageInfo<Contract> selectConEqSt(int page, int pageSize, String companyId) {
+        PageHelper.startPage(page,pageSize);
+        ContractExample example = new ContractExample();
+        ContractExample.Criteria criteria = example.createCriteria();
+        criteria.andCompanyIdEqualTo(companyId);
+        criteria.andStateEqualTo(1);
+        List<Contract> contracts = contractDao.selectByExample(example);
+        PageInfo<Contract> pageInfo = new PageInfo<>(contracts);
+        return pageInfo;
+    }
+
+    @Override
     public int updateByPrimaryKeySelective(Contract record) {
         return 0;
     }

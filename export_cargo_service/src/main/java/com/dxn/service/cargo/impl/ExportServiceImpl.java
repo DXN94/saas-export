@@ -8,10 +8,7 @@ import com.dxn.dao.export.ExportDao;
 import com.dxn.dao.export.ExportProductDao;
 import com.dxn.dao.export.ExtEproductDao;
 import com.dxn.domain.cargo.*;
-import com.dxn.domain.export.Export;
-import com.dxn.domain.export.ExportExample;
-import com.dxn.domain.export.ExportProduct;
-import com.dxn.domain.export.ExtEproduct;
+import com.dxn.domain.export.*;
 import com.dxn.service.export.ExportService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -45,7 +42,8 @@ public class ExportServiceImpl implements ExportService {
 
     @Override
     public Export findById(String id) {
-        return null;
+        Export export = exportDao.selectByPrimaryKey(id);
+        return export;
     }
 
     @Override
@@ -72,6 +70,8 @@ public class ExportServiceImpl implements ExportService {
             //货物数量和附件循环➕
             exportPNum += contract.getProNum();
             exportENum += contract.getExtNum();
+            //设置购销合同状态为2已报运
+            contract.setState(2);
         }
         export.setCustomerContract(sb.toString());
         export.setProNum(exportPNum);
@@ -116,11 +116,33 @@ public class ExportServiceImpl implements ExportService {
 
     @Override
     public void update(Export export) {
-
+        //修改报运单
+        int i = exportDao.updateByPrimaryKeySelective(export);
+        //循环修改报运单下的货物
+        List<ExportProduct> exportProducts = export.getExportProducts();
+        for (ExportProduct exportProduct : exportProducts) {
+            int i1 = exportProductDao.updateByPrimaryKeySelective(exportProduct);
+        }
     }
 
     @Override
     public void delete(String id) {
+        //查找报运单
+        Export export = exportDao.selectByPrimaryKey(id);
+        //修改报运单下的购销合同状态
+        String[] split = export.getContractIds().split(",");
+        ContractExample contractExample = new ContractExample();
+        ContractExample.Criteria criteria = contractExample.createCriteria();
+        criteria.andIdIn(Arrays.asList(split));
+        List<Contract> contracts = contractDao.selectByExample(contractExample);
+        for (Contract contract : contracts) {
+            contract.setState(1);
+        }
+        //删除报运单货物和附件
+        int i = exportProductDao.deleteByExportId(id);
+        int i1 = extEproductDao.deleteByExportId(id);
+        //删除报运单
+        int i2 = exportDao.deleteByPrimaryKey(id);
 
     }
 

@@ -26,21 +26,21 @@ public class PrintController extends BaseController {
     @Resource
     private ContractService contractService;
 
-    @RequestMapping(name = "print", value="转发到打印页面")
-    public String toPrint(){
+    @RequestMapping(value = "print", name = "转发到打印页面")
+    public String toPrint() {
         //转发到打印页面
         return "/cargo/print/contract-print";
     }
 
-    @RequestMapping(value = "printExcel",name = "打印出货表")
-    public void printContract(String inputDate){
+    @RequestMapping(value = "printExcel", name = "打印出货表")
+    public void printContract(String inputDate) {
         //1.根据条件查出要打印的数据（根据日期和公司id）
-        List<PrintContract> printContracts = contractService.findPrintContract(inputDate,companyId);
+        List<PrintContract> printContracts = contractService.findPrintContract(inputDate, companyId);
 
         //2.合同打印
         XSSFWorkbook workbook = null;
         try {
-            workbook = PrintUtil.contractPrint2(printContracts, inputDate,session);
+            workbook = PrintUtil.contractPrint2(printContracts, inputDate, session);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -49,7 +49,7 @@ public class PrintController extends BaseController {
         ByteArrayOutputStream bas = new ByteArrayOutputStream();
         try {
             workbook.write(bas);
-            new DownloadUtil().download(bas,response,inputDate.replaceAll("-0", "-").replaceAll("-", "年")+"月出货表.xlsx");
+            new DownloadUtil().download(bas, response, inputDate.replaceAll("-0", "-").replaceAll("-", "年") + "月出货表.xlsx");
         } catch (IOException e) {
             e.printStackTrace();
         }

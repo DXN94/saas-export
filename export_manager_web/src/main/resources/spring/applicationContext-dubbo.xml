@@ -27,6 +27,7 @@
     <dubbo:reference interface="com.dxn.service.cargo.FactoryService" id="factoryService"/>
     <dubbo:reference interface="com.dxn.service.cargo.ExtCproductService" id="extCproductService"/>
     <dubbo:reference interface="com.dxn.service.export.ExportService" id="ExportService"/>
+    <dubbo:reference interface="com.dxn.service.export.ExportProductService" id="ExportProductService"/>
 
 
     <!--开启dubbo的注解扫描-->

@@ -229,4 +229,8 @@
         </set>
         where id = #{id,jdbcType=VARCHAR}
     </update>
+
+    <delete id="deleteByExportId" parameterType="string">
+        delete from co_ext_eproduct where export_id = #{exportId}
+    </delete>
 </mapper>

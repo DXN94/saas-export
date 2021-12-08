@@ -1,10 +1,13 @@
 package com.dxn.service.cargo.impl;
 
 import com.alibaba.dubbo.config.annotation.Service;
+import com.dxn.dao.export.ExportProductDao;
+import com.dxn.dao.export.ExtEproductDao;
 import com.dxn.domain.export.ExportProduct;
 import com.dxn.domain.export.ExportProductExample;
 import com.dxn.service.export.ExportProductService;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -13,6 +16,12 @@ import java.util.List;
  */
 @Service
 public class ExportProductServiceImpl implements ExportProductService {
+
+    @Resource
+    private ExportProductDao exportProductDao;
+    @Resource
+    private ExtEproductDao extEproductDao;
+
     @Override
     public ExportProduct findById(String id) {
         return null;
@@ -35,6 +44,7 @@ public class ExportProductServiceImpl implements ExportProductService {
 
     @Override
     public List<ExportProduct> findAll(ExportProductExample example) {
-        return null;
+        List<ExportProduct> exportProducts = exportProductDao.selectByExample(example);
+        return exportProducts;
     }
 }

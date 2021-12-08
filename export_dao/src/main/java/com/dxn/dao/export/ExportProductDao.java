@@ -30,4 +30,11 @@ public interface ExportProductDao {
 	 * 更新
 	 */
     int updateByPrimaryKeySelective(ExportProduct record);
+
+	/**
+	 * 根据报运单id删除货物
+	 * @param exportId
+	 * @return
+	 */
+	int deleteByExportId(String exportId);
 }

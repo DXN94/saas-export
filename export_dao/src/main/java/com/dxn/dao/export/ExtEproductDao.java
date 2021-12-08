@@ -30,4 +30,11 @@ public interface ExtEproductDao {
 	 * 更新
 	 */
     int updateByPrimaryKeySelective(ExtEproduct record);
+
+	/**
+	 * 删除
+	 * @param id
+	 * @return
+	 */
+    int deleteByExportId(String id);
 }

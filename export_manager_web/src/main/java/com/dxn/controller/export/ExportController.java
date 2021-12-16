@@ -102,6 +102,36 @@ public class ExportController extends BaseController {
         }
         return "redirect:/cargo/export/findAll.do";
     }
+    @RequestMapping(value = "submit",name = "报运单提交")
+    public String submit(String id){
+        if ("".equals(id)){
+            throw new RuntimeException("没有报运单");
+        }
+        Export export = new Export();
+        export.setId(id);
+        export.setState(1);
+        exportService.update(export);
+        return "redirect:/cargo/export/findAll.do";
+    }
+
+    @RequestMapping(value = "cancel",name = "报运单取消")
+    public String cancel(String id){
+        if ("".equals(id)){
+            throw new RuntimeException("没有报运单");
+        }
+        Export export = new Export();
+        export.setId(id);
+        export.setState(0);
+        exportService.update(export);
+        return "redirect:/cargo/export/findAll.do";
+    }
+
+    @RequestMapping(value = "exportE",name = "电子报运")
+    public String exportE(String id){
+        //报运
+        boolean b = exportService.exportE(id);
+        return "";
+    }
 
 
 }

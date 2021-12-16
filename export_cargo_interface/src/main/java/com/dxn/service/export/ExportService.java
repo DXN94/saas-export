@@ -20,4 +20,6 @@ public interface ExportService {
     void delete(String id);
 
 	PageInfo findAll(ExportExample example, int page, int size);
+
+    boolean exportE(String id);
 }
